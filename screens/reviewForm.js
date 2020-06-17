@@ -4,13 +4,13 @@ import { View, Button } from 'react-native'
 import { globalStyles } from '../styles/global'
 import { TextInput } from 'react-native-gesture-handler'
 
-export default function ReviewForm() {
+export default function ReviewForm({ addReview }) {
   return (
     <View style={ globalStyles.container }>
       <Formik
         initialValues={ { title: '', body: '', rating: '' } }
         onSubmit={ values => {
-          console.log(values);
+          addReview(values);
         } }>
         { props => (
           <View>
@@ -31,7 +31,7 @@ export default function ReviewForm() {
 
             <TextInput 
               style={ globalStyles.input }
-              placeholder='Review rating'
+              placeholder='Rating (1-5)'
               onChangeText={ props.handleChange('rating') } 
               value={ props.values.rating }
               keyboardType='numeric'
